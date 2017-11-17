@@ -23,13 +23,13 @@ public class UserController
         userDetailsList.add(new UserDetails("User2", "Electrical"));
     }
     @RequestMapping(value="/userdetails",method=RequestMethod.GET,produces="application/json")
-    public List<UserDetails> GetUserdetails()
+    public List<UserDetails> getUserDetails()
     {
         return userDetailsList;
     }
     
     @RequestMapping(value="/user",consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public List<UserDetails> ProcessUser(@RequestBody UserDetails userDetails)
+    public List<UserDetails> processUser(@RequestBody UserDetails userDetails)
     {
         boolean nameExist = false;
         
@@ -51,12 +51,12 @@ public class UserController
     }
     
     @RequestMapping(value="/deleteuser",consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
-    public ResponseEntity DeleteUser(@RequestBody UserDetails userDetails)
+    public ResponseEntity deleteUser(@RequestBody UserDetails userDetails)
     {
         Iterator<UserDetails> it = userDetailsList.iterator();
         while(it.hasNext())
         {
-            UserDetails ud = (UserDetails) it.next();
+            UserDetails ud = it.next();
             if(ud.getName().equals(userDetails.getName()))
                 it.remove();
         }
