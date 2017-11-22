@@ -1,4 +1,4 @@
-package com.javainterviewpoint;
+package com.aws.polly.service;
 
 import java.util.ArrayList;
 import java.util.Iterator;

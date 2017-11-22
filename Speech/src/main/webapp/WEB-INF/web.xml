@@ -3,13 +3,13 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Spring AngularJS Tutorial</display-name>
+  <display-name>Speech Polly</display-name>
   <servlet>
-   <servlet-name>SpringAngular</servlet-name>
+   <servlet-name>Speech</servlet-name>
    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-   <servlet-name>SpringAngular</servlet-name>
+   <servlet-name>Speech</servlet-name>
    <url-pattern>/</url-pattern>
   </servlet-mapping>
   <welcome-file-list>

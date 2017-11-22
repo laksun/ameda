@@ -1,4 +1,4 @@
-package com.javainterviewpoint;
+package com.aws.polly.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
