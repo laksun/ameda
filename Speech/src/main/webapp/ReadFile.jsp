@@ -6,86 +6,86 @@
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript">
-	var app = angular.module('myapp', []);
+	var app = angular.module('myapp2', []);
 
-	app.controller('myappcontroller', function($scope, $http) {
-		$scope.users = []
-		$scope.userform = {
-			name : "",
-			department : ""
+	app.controller('myappcontroller2', function($scope, $http) {
+		$scope.texts = []
+		$scope.textform = {
+		    fileName : "",
+		    filePath : ""
 		};
 
-		getUserDetails();
+		getTextDetails();
 
-		function getUserDetails() {
+		function getTextDetails() {
 			$http({
 				method : 'GET',
-				url : 'userdetails'
+				url : 'textdetails'
 			}).then(function successCallback(response) {
-				$scope.users = response.data;
+				$scope.texts = response.data;
 			}, function errorCallback(response) {
 				console.log(response.statusText);
 			});
 		}
 
-		$scope.processUser = function() {
+		$scope.processText = function() {
 			$http({
 				method : 'POST',
-				url : 'user',
-				data : angular.toJson($scope.userform),
+				url : 'text',
+				data : angular.toJson($scope.textform),
 				headers : {
 					'Content-Type' : 'application/json'
 				}
-			}).then(getUserDetails(), clearForm())
+			}).then(getTextDetails(), clearForm())
 			  .success(function(data){
-				$scope.users= data
+				$scope.texts= data
 		    });
 		}
-		$scope.editUser = function(user) {
-			$scope.userform.name = user.name;
-			$scope.userform.department = user.department;
+		$scope.editText = function(text) {
+			$scope.textform.fileName = text.fileName;
+			$scope.textform.filePath = text.filePath;
 			disableName();
 		}
-		$scope.deleteUser = function(user) {
+		$scope.deleteText = function(text) {
 			$http({
 				method : 'DELETE',
-				url : 'deleteuser',
-				data : angular.toJson(user),
+				url : 'deletetext',
+				data : angular.toJson(text),
 				headers : {
 					'Content-Type' : 'application/json'
 				}
-			}).then(getUserDetails());
+			}).then(getTextDetails());
 		}
 
 		function clearForm() {
-			$scope.userform.name = "";
-			$scope.userform.department = "";
-			document.getElementById("name").disabled = false;
+			$scope.textform.fileName = "";
+			$scope.textform.filePath = "";
+			document.getElementById("fileName").disabled = false;
 		}
 		;
 		function disableName() {
-			document.getElementById("name").disabled = true;
+			document.getElementById("fileName").disabled = true;
 		}
 	});
 </script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-<body ng-app="myapp" ng-controller="myappcontroller">
+<body ng-app="myapp2" ng-controller="myappcontroller2">
 	<h3>Select a File</h3>
-	<form ng-submit="processUserDetails()">
+	<form ng-submit="processTextDetails()">
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 600px">
 				<tr>
 					<td>File Name</td>
 					<td>
-						<input type="text" id="name" ng-model="userform.name" size="30" />
+						<input type="text" id="fileName" ng-model="textform.fileName" size="30" />
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2">
-						<input type="submit" class="btn btn-primary btn-sm" ng-click="processUser()"	value="Read File" />
+						<input type="submit" class="btn btn-primary btn-sm" ng-click="processText()"	value="Read File" />
 				    </td>
 				</tr>
 			</table>
@@ -100,11 +100,11 @@
 				<th>Actions</th>
 			</tr>
 
-			<tr ng-repeat="user in users">
-				<td>{{ user.name}}</td>
-				<td>{{ user.department }}</td>
-				<td><a ng-click="editUser(user)" class="btn btn-primary btn-sm">Edit</a>
-					| <a ng-click="deleteUser(user)" class="btn btn-danger btn-sm">Delete</a></td>
+			<tr ng-repeat="text in texts">
+				<td>{{ text.fileName}}</td>
+				<td>{{ text.filePath }}</td>
+				<td><a ng-click="editText(text)" class="btn btn-primary btn-sm">Edit</a>
+					| <a ng-click="deleteText(text)" class="btn btn-danger btn-sm">Delete</a></td>
 			</tr>
 		</table>
 	</div>
