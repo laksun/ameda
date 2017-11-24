@@ -1,3 +1,7 @@
+#Compile the code
+
+mvn install
+
 To run the application:
 	mvn tomcat7:run
 

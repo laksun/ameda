@@ -1,8 +1,11 @@
 package com.aws.polly.storage;
 
+import org.springframework.stereotype.Repository;
+
 //import org.springframework.boot.context.properties.ConfigurationProperties;
 
 //@ConfigurationProperties("storage")
+@Repository
 public class StorageProperties {
 
     /**
