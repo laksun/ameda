@@ -54,7 +54,7 @@
 		
 		<h3>Fill the Form and Select a File (<code>@RequestParam</code>)</h3>
 		
-		<form:form method="POST" action="/Speech/uploadFileWithAddtionalData" enctype="multipart/form-data">
+		<form:form method="POST" action="/Speech/uploadFileWithAdditionalData" enctype="multipart/form-data">
 		
 			<table>
 				<tr>
