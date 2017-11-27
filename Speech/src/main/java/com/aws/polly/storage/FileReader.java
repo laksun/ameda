@@ -28,7 +28,7 @@ public class FileReader {
 		//lineList.forEach(lineitem ->System.out.println(lineitem));
 		
 		//read a pdf file
-		fileName = "D:\\tmp\\academic-essay-writing-resource.pdf";
+		fileName = "D:\\tmp\\aws-sdk-java-dg.pdf";
 		lineList =FileReader.readPdf(fileName);
 		lineList.forEach(lineitem ->System.out.println(lineitem));
 
