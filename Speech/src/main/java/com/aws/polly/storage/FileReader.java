@@ -1,5 +1,6 @@
 package com.aws.polly.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -8,6 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +25,11 @@ public class FileReader {
 		String fileName = "D:\\10days.txt";
 		List<String> lineList =FileReader.readFile(fileName);
 		
+		//lineList.forEach(lineitem ->System.out.println(lineitem));
+		
+		//read a pdf file
+		fileName = "D:\\tmp\\academic-essay-writing-resource.pdf";
+		lineList =FileReader.readPdf(fileName);
 		lineList.forEach(lineitem ->System.out.println(lineitem));
 
 	}
@@ -59,6 +68,24 @@ public class FileReader {
 	
 	public static List<String> readPdf(String fileName){
 		List<String> allLines = new ArrayList<String>();
+		logger.warn("readPdf");
+		try {
+		    PDDocument document = null;
+		    document = PDDocument.load(new File(fileName));
+		    document.getClass();
+		    if (!document.isEncrypted()) {
+		        //PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+		        //stripper.setSortByPosition(true);
+		        PDFTextStripper Tstripper = new PDFTextStripper();
+		        String st = Tstripper.getText(document);
+		        allLines.add(st);
+		        logger.warn("line" +st);
+		    }
+		    document.close();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    logger.error(e.getMessage());
+		}
 		
 		return allLines;
 	}
