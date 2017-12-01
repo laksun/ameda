@@ -4,8 +4,9 @@
 <head>
 <title>Upload File Request Page</title>
 </head>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <body>
-	<form method="POST" action="/Speech/journal/uploadFile" enctype="multipart/form-data">
+	<form method="POST"  action="${root}/journal/uploadFile" enctype="multipart/form-data">
 		File to upload: <input type="file" name="file">
  
 		Name: <input type="text" name="name">
