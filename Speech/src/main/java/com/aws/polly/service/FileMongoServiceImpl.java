@@ -3,11 +3,14 @@ package com.aws.polly.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.aws.polly.commands.FileMongoForm;
 import com.aws.polly.converter.FileMongoFormToFileMongo;
 import com.aws.polly.model.FileMongo;
 import com.aws.polly.model.FileRepository;
 
+@Service
 public class FileMongoServiceImpl implements FileMongoService {
 	
 	private FileRepository fileRepository;

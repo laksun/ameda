@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.aws.polly.converter.FileMongoToFileMongoForm;
+import com.aws.polly.model.FileMongo;
 import com.aws.polly.model.FormDataWithFile;
+import com.aws.polly.service.FileMongoService;
 import com.aws.polly.storage.StorageService;
 
 import java.io.BufferedOutputStream;
@@ -25,6 +28,20 @@ import org.slf4j.LoggerFactory;
 public class FileUploadController {
 
 	final static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	
+	private FileMongoService fileMongoService;
+
+    private FileMongoToFileMongoForm fileMongoToFileMongoForm;
+
+    @Autowired
+    public void setProductToProductForm(FileMongoToFileMongoForm fileMongoToFileMongoForm) {
+        this.fileMongoToFileMongoForm = fileMongoToFileMongoForm;
+    }
+
+    @Autowired
+    public void setfileMongoService(FileMongoService fileMongoService) {
+        this.fileMongoService = fileMongoService;
+    }
 
 	private final StorageService storageService;
 
@@ -101,6 +118,8 @@ public class FileUploadController {
 				stream.close();
 
 				logger.warn("Server File Location=" + serverFile.getAbsolutePath());
+				
+				FileMongo fileMongo = fileMongoService.saveOrUpdateProductForm(fileMongoForm);
 
 				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {

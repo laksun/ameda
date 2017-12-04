@@ -2,11 +2,13 @@ package com.aws.polly.converter;
 
 import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.aws.polly.commands.FileMongoForm;
 import com.aws.polly.model.FileMongo;
 
+@Component
 public class FileMongoFormToFileMongo implements Converter<FileMongoForm, FileMongo> {
 
 	@Override
