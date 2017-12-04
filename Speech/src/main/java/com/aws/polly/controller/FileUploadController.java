@@ -75,17 +75,19 @@ public class FileUploadController {
 	}
 
 	/**
-	 * Upload single file using Spring Controller
-	 * reference : https://www.journaldev.com/2573/spring-mvc-file-upload-example-single-multiple-files
+	 * Upload single file using Spring Controller reference :
+	 * https://www.journaldev.com/2573/spring-mvc-file-upload-example-single-multiple-files
 	 */
 	@RequestMapping(value = "/journal/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("name") String name,
 			@RequestParam("file") MultipartFile file) {
-		logger.warn("/journal/uploadFile" );
+		logger.warn("/journal/uploadFile");
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-
+				if (name == null || "".equals(name)) {
+					name = file.getName();
+				}
 				// Creating the directory to store file
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
@@ -102,6 +104,8 @@ public class FileUploadController {
 
 				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error(e.toString());
 				return "You failed to upload " + name + " => " + e.getMessage();
 			}
 		} else {

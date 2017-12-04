@@ -1,12 +1,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans.xsd
  http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context.xsd
  http://www.springframework.org/schema/mvc
- http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+ http://www.springframework.org/schema/mvc/spring-mvc.xsd
+ http://www.springframework.org/schema/data/mongo 
+ http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
 	<context:component-scan base-package="com.aws.polly" />
 	<mvc:annotation-driven />
@@ -22,4 +24,23 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="268435456" />
 	</bean>
+
+	<!-- mongodb -->
+
+	<mongo:mongo id="mongo" host="mongo-db" port="27017">
+		<mongo:options connections-per-host="8"
+			threads-allowed-to-block-for-connection-multiplier="4"
+			connect-timeout="1000" max-wait-time="1500" auto-connect-retry="true"
+			socket-keep-alive="true" socket-timeout="1500" slave-ok="true"
+			write-number="1" write-timeout="0" write-fsync="true" />
+	</mongo:mongo>
+	<mongo:db-factory id="mongoDbFactory" dbname="test"
+		mongo-ref="mongo" />
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+	</bean>
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<mongo:repositories base-package="com.aws.polly.model"  mongo-template-ref="mongoTemplate" ></mongo:repositories>	
+
 </beans>
