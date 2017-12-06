@@ -119,6 +119,8 @@ public class FileUploadController {
 
 				logger.warn("Server File Location=" + serverFile.getAbsolutePath());
 				
+				//save the file into mongodb
+				
 				FileMongo fileMongo = fileMongoService.saveOrUpdateProductForm(fileMongoForm);
 
 				return "You successfully uploaded file=" + name;
