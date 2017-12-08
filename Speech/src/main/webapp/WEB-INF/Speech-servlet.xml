@@ -10,7 +10,7 @@
  http://www.springframework.org/schema/data/mongo 
  http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
-	<context:component-scan base-package="com.aws.polly" />
+	<context:component-scan base-package="com.yla" />
 	<mvc:annotation-driven />
 	<mvc:resources location="/" mapping="/**"></mvc:resources>
 
