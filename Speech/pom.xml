@@ -12,6 +12,11 @@
 
 		</dependencies>
 	</dependencyManagement>
+	<properties>
+		<spring.data.mongodb.version>1.9.6.RELEASE</spring.data.mongodb.version>
+		<mongo.driver.version>3.4.2</mongo.driver.version>
+		<spring.version>4.2.9.RELEASE</spring.version>
+	</properties>
 
 	<dependencies>
 		<!-- <dependency> <groupId>com.amazonaws</groupId> <artifactId>aws-java-sdk</artifactId> 
@@ -136,7 +141,12 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.10.7.RELEASE</version>
+			<version>${spring.data.mongodb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${mongo.driver.version}</version>
 		</dependency>
 
 	</dependencies>

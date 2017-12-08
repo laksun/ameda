@@ -1,5 +1,9 @@
 package com.mongo.repositories;
 
-public class CatalogRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.mongo.model.Catalog;
+
+public interface CatalogRepository extends MongoRepository<Catalog, String> {
 
 }
