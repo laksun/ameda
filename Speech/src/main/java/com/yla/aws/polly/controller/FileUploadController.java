@@ -14,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yla.aws.polly.model.FormDataWithFile;
 import com.yla.aws.polly.storage.StorageService;
 import com.yla.mongo.model.Catalog;
+import com.yla.mongo.model.FileMongo;
 import com.yla.mongo.repositories.CatalogRepository;
+import com.yla.mongo.repositories.FileMongoRepository;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -84,6 +86,9 @@ public class FileUploadController {
 	@Autowired
 	CatalogRepository catalogRepository;
 	
+	@Autowired
+	FileMongoRepository fileMongoRepository;
+	
 	@RequestMapping(value = "/journal/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("name") String name,
 			@RequestParam("file") MultipartFile file) {
@@ -110,10 +115,13 @@ public class FileUploadController {
 				
 				//save the file into mongodb
 				
-				Catalog catalog = new Catalog("123456", "Times", "New York", "2017",
-			            "Man of Year", "Anonymous");
-				catalogRepository.save(catalog);
+				//Catalog catalog = new Catalog("123456", "Times", "New York", "2017","Man of Year", "Anonymous");
+				//catalogRepository.save(catalog);
 
+				FileMongo fileMongo = new FileMongo();
+				fileMongo.setFileName(name);
+				fileMongoRepository.save(fileMongo);
+				
 				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {
 				e.printStackTrace();

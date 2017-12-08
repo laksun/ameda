@@ -24,5 +24,33 @@ mvn sonar:sonar -Dsonar.host.url=http://10.10.1.246:9000 -Dsonar.login=b95ebc9f9
 
 2. 
 
+
+To install docker for mongo db
+1. get the docker image for mongodb
+
+docker pull mongo
+
+2. create the container from the docker image
+docker run --name speech-mongo  -p 27017:27017   -v /var/lib/docker/development/mongodb/data/:/data/db -d mongo
+
+3. access the mongo inside docker
+
+docker exec -it speech-mongo mongo
+
+Some mongo-db commands:
+use local
+show dbs
+db.stats()
+db.runCommand({listDatabases:1})
+db.createCollection("pdfFiles")
+db.copydatabase('dborigin','dbcopy')
+db.dropDatabase()
+doc1 = {"_id": ObjectId("sfsdf"), "catalogId" : "catalog1", "journal" : 'Oracle Magazine', "publisher" : 'Oracle Publishing', "edition" : 'November December 2013',"title" : 'Engineering as a Service',"author" : 'wefwe wer wer'};
+
+db.tripsFiles.insert(doc1)
+db.collection.save(doc1)
+
+ 
+
 Reference:
 https://www.safaribooksonline.com/library/view/pro-mongodbtm-development/9781484215982/9781484215999_Ch10.xhtml
