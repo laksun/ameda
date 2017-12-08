@@ -17,7 +17,7 @@ import com.mongodb.ServerAddress;
 import com.yla.mongo.service.CatalogService;
 
 @Configuration
-@EnableMongoRepositories("com.mongo.repositories")
+@EnableMongoRepositories("com.yla.mongo.repositories")
 @ComponentScan(basePackageClasses = {CatalogService.class})
 public class SpringMongoApplicationConfig extends AbstractMongoConfiguration {
 	
@@ -36,7 +36,7 @@ public class SpringMongoApplicationConfig extends AbstractMongoConfiguration {
 
     
     protected String getMappingBasePackage() {
-        return "com.mongo";
+        return "com.yla";
     }
 
 	
