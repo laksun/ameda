@@ -37,7 +37,7 @@ docker run --name speech-mongo  -p 27017:27017   -v /var/lib/docker/development/
 
 docker exec -it speech-mongo mongo
 
-Some mongo-db commands:
+4. Some mongo-db commands:
 use local
 show dbs
 db.stats()
@@ -50,7 +50,9 @@ doc1 = {"_id": ObjectId("sfsdf"), "catalogId" : "catalog1", "journal" : 'Oracle 
 db.tripsFiles.insert(doc1)
 db.collection.save(doc1)
 
- 
+5. Add Spring exception handling mechanism into the application
 
 Reference:
 https://www.safaribooksonline.com/library/view/pro-mongodbtm-development/9781484215982/9781484215999_Ch10.xhtml
+
+2. https://www.journaldev.com/2651/spring-mvc-exception-handling-controlleradvice-exceptionhandler-handlerexceptionresolver

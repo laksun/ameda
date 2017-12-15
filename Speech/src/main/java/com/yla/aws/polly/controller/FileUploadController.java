@@ -2,8 +2,10 @@ package com.yla.aws.polly.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yla.aws.polly.exception.EmployeeNotFoundException;
 import com.yla.mongo.model.Catalog;
+import com.yla.mongo.model.Employee;
 import com.yla.mongo.model.FileMongo;
 import com.yla.mongo.repositories.CatalogRepository;
 import com.yla.mongo.repositories.FileMongoRepository;
@@ -19,6 +23,8 @@ import com.yla.mongo.repositories.FileMongoRepository;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,43 +34,6 @@ public class FileUploadController {
 
 	final static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
-	
-	
-
-	@RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
-	public String displayForm() {
-		return "fileUploadForm";
-	}
-
-	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public String submit(@RequestParam("file") final MultipartFile file, final ModelMap modelMap) {
-		logger.warn("uploadFile");
-		modelMap.addAttribute("file", file);
-		return "fileUploadView";
-	}
-
-	@RequestMapping(value = "/uploadMultiFile", method = RequestMethod.POST)
-	public String submit(@RequestParam("files") final MultipartFile[] files, final ModelMap modelMap) {
-		logger.warn("uploadMultiFile");
-		modelMap.addAttribute("files", files);
-		return "fileUploadView";
-	}
-
-	@RequestMapping(value = "/uploadFileWithAdditionalData", method = RequestMethod.POST)
-	public String submit(@RequestParam final MultipartFile file, @RequestParam final String name,
-			@RequestParam final String email, RedirectAttributes redirectAttributes, final ModelMap modelMap) {
-		logger.warn("uploadFileWithAddtionalData");
-		modelMap.addAttribute("name", name);
-		modelMap.addAttribute("email", email);
-		modelMap.addAttribute("file", file);
-
-		
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
-
-		return "fileUploadView";
-	}
-
 	
 
 	/**
@@ -163,6 +132,27 @@ public class FileUploadController {
 			}
 		}
 		return message;
+	}
+	
+	@RequestMapping(value="/emp/{id}", method=RequestMethod.GET)
+	public String getEmployee(@PathVariable("id") int id, Model model) throws Exception{
+		//deliberately throwing different types of exception
+		if(id==1){
+			throw new EmployeeNotFoundException(id);
+		}else if(id==2){
+			throw new SQLException("SQLException, id="+id);
+		}else if(id==3){
+			throw new IOException("IOException, id="+id);
+		}else if(id==10){
+			Employee emp = new Employee();
+			emp.setName("Pankaj");
+			emp.setId(id);
+			model.addAttribute("employee", emp);
+			return "home";
+		}else {
+			throw new Exception("Generic Exception, id="+id);
+		}
+		
 	}
 
 }
