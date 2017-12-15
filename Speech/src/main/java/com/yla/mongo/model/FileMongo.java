@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class FileMongo {
-	
+	/*
+	Test for Teamcity build
+	*/
 	@Id
 	private String id;
 	
