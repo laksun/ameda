@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yla.aws.polly.model.FormDataWithFile;
-import com.yla.aws.polly.storage.StorageService;
 import com.yla.mongo.model.Catalog;
 import com.yla.mongo.model.FileMongo;
 import com.yla.mongo.repositories.CatalogRepository;
@@ -31,12 +29,7 @@ public class FileUploadController {
 	final static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
 	
-	private final StorageService storageService;
-
-	@Autowired
-	public FileUploadController(StorageService storageService) {
-		this.storageService = storageService;
-	}
+	
 
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
 	public String displayForm() {
@@ -65,19 +58,14 @@ public class FileUploadController {
 		modelMap.addAttribute("email", email);
 		modelMap.addAttribute("file", file);
 
-		storageService.store(file);
+		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
 		return "fileUploadView";
 	}
 
-	@RequestMapping(value = "/uploadFileModelAttribute", method = RequestMethod.POST)
-	public String submit(@ModelAttribute final FormDataWithFile formDataWithFile, final ModelMap modelMap) {
-		logger.warn("uploadFileModelAttribute");
-		modelMap.addAttribute("formDataWithFile", formDataWithFile);
-		return "fileUploadView";
-	}
+	
 
 	/**
 	 * Upload single file using Spring Controller reference :
@@ -118,13 +106,18 @@ public class FileUploadController {
 				//Catalog catalog = new Catalog("123456", "Times", "New York", "2017","Man of Year", "Anonymous");
 				//catalogRepository.save(catalog);
 
-				FileMongo fileMongo = new FileMongo();
-				fileMongo.setFileName(name);
-				fileMongoRepository.save(fileMongo);
+				try {
+					FileMongo fileMongo = new FileMongo();
+					fileMongo.setFileName(name);
+					fileMongoRepository.save(fileMongo);
+				} catch (Exception e) {
+					logger.error(e.toString());
+					// To the user tell that the file is not stored into Mongodb
+				}
 				
 				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				logger.error(e.toString());
 				return "You failed to upload " + name + " => " + e.getMessage();
 			}
