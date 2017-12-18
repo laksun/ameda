@@ -33,8 +33,6 @@ import org.slf4j.LoggerFactory;
 public class FileUploadController {
 
 	final static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-	
-	
 
 	/**
 	 * Upload single file using Spring Controller reference :
@@ -42,13 +40,13 @@ public class FileUploadController {
 	 */
 	@Autowired
 	CatalogRepository catalogRepository;
-	
+
 	@Autowired
 	FileMongoRepository fileMongoRepository;
-	
+
 	@RequestMapping(value = "/journal/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("name") String name,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file) throws Exception {
 		logger.warn("/journal/uploadFile");
 		if (!file.isEmpty()) {
 			try {
@@ -69,26 +67,23 @@ public class FileUploadController {
 				stream.close();
 
 				logger.warn("Server File Location=" + serverFile.getAbsolutePath());
-				
-				//save the file into mongodb
-				
-				//Catalog catalog = new Catalog("123456", "Times", "New York", "2017","Man of Year", "Anonymous");
-				//catalogRepository.save(catalog);
 
-				try {
-					FileMongo fileMongo = new FileMongo();
-					fileMongo.setFileName(name);
-					fileMongoRepository.save(fileMongo);
-				} catch (Exception e) {
-					logger.error(e.toString());
-					// To the user tell that the file is not stored into Mongodb
-				}
-				
+				// save the file into mongodb
+
+				// Catalog catalog = new Catalog("123456", "Times", "New York", "2017","Man of
+				// Year", "Anonymous");
+				// catalogRepository.save(catalog);
+
+				FileMongo fileMongo = new FileMongo();
+				fileMongo.setFileName(name);
+				fileMongoRepository.save(fileMongo);
+
 				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 				logger.error(e.toString());
-				return "You failed to upload " + name + " => " + e.getMessage();
+				throw new Exception(e);
+				// return "You failed to upload " + name + " => " + e.getMessage();
 			}
 		} else {
 			return "You failed to upload " + name + " because the file was empty.";
@@ -133,26 +128,26 @@ public class FileUploadController {
 		}
 		return message;
 	}
-	
-	@RequestMapping(value="/emp/{id}", method=RequestMethod.GET)
-	public String getEmployee(@PathVariable("id") int id, Model model) throws Exception{
-		//deliberately throwing different types of exception
-		if(id==1){
+
+	@RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+	public String getEmployee(@PathVariable("id") int id, Model model) throws Exception {
+		// deliberately throwing different types of exception
+		if (id == 1) {
 			throw new EmployeeNotFoundException(id);
-		}else if(id==2){
-			throw new SQLException("SQLException, id="+id);
-		}else if(id==3){
-			throw new IOException("IOException, id="+id);
-		}else if(id==10){
+		} else if (id == 2) {
+			throw new SQLException("SQLException, id=" + id);
+		} else if (id == 3) {
+			throw new IOException("IOException, id=" + id);
+		} else if (id == 10) {
 			Employee emp = new Employee();
-			emp.setName("Pankaj");
+			emp.setName("Yusuf");
 			emp.setId(id);
 			model.addAttribute("employee", emp);
 			return "home";
-		}else {
-			throw new Exception("Generic Exception, id="+id);
+		} else {
+			throw new Exception("Generic Exception, id=" + id);
 		}
-		
+
 	}
 
 }

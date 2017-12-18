@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @ControllerAdvice
@@ -21,14 +20,41 @@ private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHand
 	@ExceptionHandler(SQLException.class)
 	public String handleSQLException(HttpServletRequest request, Exception ex){
 		logger.info("SQLException Occured:: URL="+request.getRequestURL());
-		return "database_error";
+		return "error/database_error";
 	}
 	
-	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="IOException occured")
+	
+	//@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="IOException occured")
 	@ExceptionHandler(IOException.class)
-	public void handleIOException(){
+	public String handleIOException(){
 		logger.error("IOException handler executed");
-		//returning 404 error code
+		return "error/404";
 	}
+	
+	@ExceptionHandler(com.mongodb.MongoSocketOpenException.class)
+	public String handleMongoDBException() {
+		return "error/mongoDB_error";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleException(HttpServletRequest request, Exception ex) {
+		logger.error(ex.getMessage());
+		return "error/error";
+	}
+	
+	//to return JSON message
+	@ExceptionHandler(EmployeeNotFoundException.class)
+	public @ResponseBody ExceptionJSONInfo handleEmployeeNotFoundException(HttpServletRequest request, Exception ex) {
+		ExceptionJSONInfo response = new ExceptionJSONInfo();
+		response.setUrl(request.getRequestURL().toString());
+		response.setMessage(ex.getMessage());
+		return response;
+		
+	}
+	
+	
+	
+	
+	
 
 }
