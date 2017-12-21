@@ -1,4 +1,4 @@
-package com.yla.aws.polly.storage;
+package com.yla.demo;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +27,8 @@ public class FileReader {
 		//lineList.forEach(lineitem ->System.out.println(lineitem));
 		
 		//read a pdf file
-		fileName = "D:\\tmp\\aws-sdk-java-dg.pdf";
+		//fileName = "D:\\tmp\\aws-sdk-java-dg.pdf";
+		fileName = "C:\\Users\\yaksun\\Downloads\\understanding-machine-learning-theory-algorithms.pdf";
 		lineList =FileReader.readPdf(fileName);
 		lineList.forEach(lineitem ->System.out.println(lineitem));
 

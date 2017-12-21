@@ -1,4 +1,4 @@
-package com.yla.aws.polly.db;
+package com.yla.mongo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;

@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
-import com.yla.mongo.service.CatalogService;
+import com.yla.demo.CatalogService;
 
 @Configuration
 @EnableMongoRepositories("com.yla.mongo.repositories")

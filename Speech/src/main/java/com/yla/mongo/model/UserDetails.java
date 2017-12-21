@@ -1,4 +1,4 @@
-package com.yla.aws.polly.service;
+package com.yla.mongo.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

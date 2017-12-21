@@ -1,4 +1,4 @@
-package com.yla.mongo.core;
+package com.yla.mongo.config;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +15,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
-import com.yla.mongo.config.SpringMongoApplicationConfig;
 import com.yla.mongo.model.Catalog;
 
 public class App {
