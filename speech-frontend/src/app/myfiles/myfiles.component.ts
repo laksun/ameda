@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyFile } from '../myfile';
+import { MYFILES } from '../mock-files';
+
 
 @Component({
   selector: 'app-myfiles',
@@ -12,6 +14,14 @@ export class MyfilesComponent implements OnInit {
     id: 1,
     name: 'Myfile1.pdf'
   };
+
+  myfiles = MYFILES;
+
+  selectedFile: MyFile;
+
+  onSelect(aFile: MyFile): void {
+    this.selectedFile = aFile;
+  }
   
   constructor() { }
 

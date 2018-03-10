@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MyfilesComponent } from './myfiles/myfiles.component';
+import { MyfileDetailComponent } from './myfile-detail/myfile-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyfilesComponent
+    MyfilesComponent,
+    MyfileDetailComponent
   ],
   imports: [
     BrowserModule,

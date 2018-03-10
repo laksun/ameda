@@ -1,0 +1,10 @@
+<div *ngIf="myfile">
+  <h2>{{ myfile.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{myfile.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="myfile.name" placeholder="name" >
+    </label>
+  </div>
+
+</div>
