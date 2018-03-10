@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MyfilesComponent } from './myfiles/myfiles.component';
 import { MyfileDetailComponent } from './myfile-detail/myfile-detail.component';
+import { MyfileService } from './myfile.service';
 
 
 @NgModule({
@@ -18,7 +19,10 @@ import { MyfileDetailComponent } from './myfile-detail/myfile-detail.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    MyfileService,
+    /* ...*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

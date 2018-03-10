@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyFile } from '../myfile';
-import { MYFILES } from '../mock-files';
+import { MyfileService } from '../myfile.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class MyfilesComponent implements OnInit {
     name: 'Myfile1.pdf'
   };
 
-  myfiles = MYFILES;
+  myfiles : MyFile[];
 
   selectedFile: MyFile;
 
@@ -23,9 +23,14 @@ export class MyfilesComponent implements OnInit {
     this.selectedFile = aFile;
   }
   
-  constructor() { }
+  constructor(private myfileService: MyfileService) { }
 
   ngOnInit() {
+    this.getMyFiles();
+  }
+
+  getMyFiles(): void {
+    this.myfileService.getMyFiles().subscribe(myfiles => this.myfiles = myfiles);
   }
 
 }
