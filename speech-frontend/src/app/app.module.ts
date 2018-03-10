@@ -7,13 +7,16 @@ import { AppComponent } from './app.component';
 import { MyfilesComponent } from './myfiles/myfiles.component';
 import { MyfileDetailComponent } from './myfile-detail/myfile-detail.component';
 import { MyfileService } from './myfile.service';
+import { MessagesComponent } from './messages/messages.component';
+import { MessagesService } from './messages.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MyfilesComponent,
-    MyfileDetailComponent
+    MyfileDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import { MyfileService } from './myfile.service';
   ],
   providers: [
     MyfileService,
+    MessagesService,
     /* ...*/
   ],
   bootstrap: [AppComponent]

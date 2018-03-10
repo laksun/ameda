@@ -6,12 +6,15 @@ import { of } from 'rxjs/observable/of';
 import { MyFile } from './myfile';
 import { MYFILES } from './mock-files';
 
+import { MessagesService } from './messages.service';
+
 @Injectable()
 export class MyfileService {
 
-  constructor() { }
+  constructor(private messageService: MessagesService) { }
 
-  getMyFiles() : Observable<MyFile[]>  {
+  getMyFiles(): Observable<MyFile[]>  {
+    this.messageService.add('MyFileService: fetched files');
     return of(MYFILES);
   }
 }
