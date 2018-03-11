@@ -17,4 +17,9 @@ export class MyfileService {
     this.messageService.add('MyFileService: fetched files');
     return of(MYFILES);
   }
+
+  getMyFile(id: number): Observable<MyFile> {
+    this.messageService.add(`MyfileService: fetched file id=${id}`);
+    return of(MYFILES.find(myfile => myfile.id === id));
+  }
 }

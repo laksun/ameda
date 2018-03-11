@@ -10,18 +10,8 @@ import { MyfileService } from '../myfile.service';
 })
 export class MyfilesComponent implements OnInit {
 
-  myfile: MyFile = {
-    id: 1,
-    name: 'Myfile1.pdf'
-  };
 
   myfiles: MyFile[];
-
-  selectedFile: MyFile;
-
-  onSelect(aFile: MyFile): void {
-    this.selectedFile = aFile;
-  }
 
   constructor(private myfileService: MyfileService) { }
 

@@ -9,6 +9,8 @@ import { MyfileDetailComponent } from './myfile-detail/myfile-detail.component';
 import { MyfileService } from './myfile.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessagesService } from './messages.service';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -16,11 +18,13 @@ import { MessagesService } from './messages.service';
     AppComponent,
     MyfilesComponent,
     MyfileDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     MyfileService,
