@@ -41,11 +41,13 @@ wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://down
 mkdir /opt/java
 tar -xzf jdk-8u161-linux-x64.tar.gz -C /opt/java
 cd java
+
 sudo alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_161/bin/java 2
 sudo alternatives --config java
 sudo alternatives --install /usr/bin/jar jar /opt/java/jdk1.8.0_161/bin/jar 2
 sudo alternatives --set jar /opt/java/jdk1.8.0_161/bin/jar
 sudo alternatives --set javac /opt/java/jdk1.8.0_161/bin/javac
+sudo alternatives --set java /opt/java/jdk1.8.0_161/bin/java
 
 echo "#java path" >> /etc/profile
 echo "export JAVA_HOME=/opt/java/jdk1.8.0_161" >> /etc/profile
@@ -60,7 +62,7 @@ echo "#maven path" >> /etc/profile
 
 echo "export PATH=$PATH:/opt/apache-maven-3.3.9/bin" >> /etc/profile
 
-source /etc/profile
+sudo source /etc/profile
 
 ###clean the downloaded files
 rm /opt/jdk-8u161-linux-x64.tar.gz
