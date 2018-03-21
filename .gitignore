@@ -1,0 +1,9 @@
+.idea
+.idea/ameda.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+Speech/.idea/
+Speech/src/test/
+tripsmgmt/
