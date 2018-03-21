@@ -32,3 +32,37 @@ password=trips
 dataSourceName=tripsds1
 url=jdbc:oracle:thin:@trips-db:1521/mradev2
 EOM
+
+##install java
+cd /opt
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+#javascript: void(0)
+#http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+mkdir /opt/java
+tar -xzf jdk-8u161-linux-x64.tar.gz -C /opt/java
+cd java
+sudo alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_161/bin/java 2
+sudo alternatives --config java
+sudo alternatives --install /usr/bin/jar jar /opt/java/jdk1.8.0_161/bin/jar 2
+sudo alternatives --set jar /opt/java/jdk1.8.0_161/bin/jar
+sudo alternatives --set javac /opt/java/jdk1.8.0_161/bin/javac
+
+echo "#java path" >> /etc/profile
+echo "export JAVA_HOME=/opt/java/jdk1.8.0_161" >> /etc/profile
+echo "export JRE_HOME=/opt/java/jdk1.8.0_161/jre" >> /etc/profile
+echo "export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin" >> /etc/profile
+
+##install maven
+cd /opt
+wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+tar xzvf apache-maven-3.3.9-bin.tar.gz
+echo "#maven path" >> /etc/profile
+
+echo "export PATH=$PATH:/opt/apache-maven-3.3.9/bin" >> /etc/profile
+
+source /etc/profile
+
+###clean the downloaded files
+rm /opt/jdk-8u161-linux-x64.tar.gz
+rm /opt/apache-maven-3.3.9-bin.tar.gz
+rm /opt/apache-servicemix-7.0.1.zip
