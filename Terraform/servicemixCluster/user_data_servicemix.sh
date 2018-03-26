@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
+#TO CREATE THE SERVICEMIX SERVER ON AWS VIA TERRAFORM
+#inthe source folder
+#terraform init
+#terraform plan
+#terraform apply
+#ToDELETE
+#terraform destroy
 # the server is aws linux box
 # servicemix is unloaded and unzipped under /opt folder
+#Maven installed
+#Java Installed
+#Datasource configured
+#Active directory configured
 yum update -y
 cd /opt
 wget http://apache.mirror.anlx.net/servicemix/servicemix-7/7.0.1/apache-servicemix-7.0.1.zip
@@ -61,10 +72,15 @@ tar xzvf apache-maven-3.3.9-bin.tar.gz
 echo "#maven path" >> /etc/profile
 
 echo "export PATH=$PATH:/opt/apache-maven-3.3.9/bin" >> /etc/profile
+sleep 5
 
-sudo source /etc/profile
+
+#prepare maven repository
+sudo mkdir /root/.m2
 
 ###clean the downloaded files
 rm /opt/jdk-8u161-linux-x64.tar.gz
 rm /opt/apache-maven-3.3.9-bin.tar.gz
 rm /opt/apache-servicemix-7.0.1.zip
+
+sudo source /etc/profile
