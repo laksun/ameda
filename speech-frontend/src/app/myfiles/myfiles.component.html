@@ -1,0 +1,12 @@
+
+
+<h2>My Files</h2>
+<ul class="heroes">
+   <li *ngFor="let myfile of myfiles">
+     <a routerLink="/detail/{{myfile.id}}">
+     <span class="badge">{{myfile.id}}</span>{{myfile.name}}
+    </a>
+   </li>
+
+</ul>
+
