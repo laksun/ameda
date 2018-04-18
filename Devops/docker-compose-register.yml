@@ -1,0 +1,35 @@
+version: '2.1'
+
+services:
+  register:
+    image: 'yla-register/register:version1.0'
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - '8080:8080'
+      - '8443:8443'
+    volumes:
+      - 'apache_data:/bitnami'
+    links:
+       - "db"  
+
+  db:
+     image: mysql
+     restart: always
+     ports:
+       - 3306:3306
+     environment:
+       MYSQL_ROOT_PASSWORD: Technobrainsm1
+     
+
+  adminer:
+     image: adminer
+     restart: always
+     ports:
+       - 8090:8080
+     links:
+       - "db"
+
+volumes:
+  apache_data:
+    driver: local

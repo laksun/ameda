@@ -56,3 +56,29 @@ Reference:
 https://www.safaribooksonline.com/library/view/pro-mongodbtm-development/9781484215982/9781484215999_Ch10.xhtml
 
 2. https://www.journaldev.com/2651/spring-mvc-exception-handling-controlleradvice-exceptionhandler-handlerexceptionresolver
+============================================================================================================================
+#REGISTRATION MODULE
+# GIT MAVEN DOCKER
+#Registration module
+#Create the register image on linux server
+
+#Get the code from git repository & maven build and install
+git clone https://github.com/laksun/SpringBoot-Registration-Login-ThePerfectExample.git
+cd SpringBoot-Registration-Login-ThePerfectExample/
+mvn clean install
+
+##Create the docker image
+mkdir myimages
+cd myimages
+mkdir registration
+cd registration/
+#Dockerfile is under Devops/Registration
+nano Dockerfile
+
+#if docker is not running already
+systemctl start docker
+systemctl enable docker
+
+docker build -t register_image .
+docker tag af338aef527e yla-register/register:version1.0
+docker images
