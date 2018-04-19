@@ -1,0 +1,28 @@
+Install Steps Content
+
+	1.awscli
+	2.java
+	3.git
+	4.maven
+
+	5. docker compose mysql
+	Mysql
+	admirer- mysql browser
+
+		docker-compose -f mysql-compose.yml up -d
+
+	6.Sanity check
+		#set the hostname yla-ameda
+		nano /etc/hosts
+			127.0.0.1  yla-ameda  yla-mysql
+
+		http://yla-ameda:8090
+
+	7. database 
+	user:root
+	pwd:12345678
+
+	8. Registration db scripts  
+		db/registrationdb.sql
+
+		Run the scripts in mysql workbench or admirer.
