@@ -1,7 +1,11 @@
 --as db admin
-CREATE USER 'yusuf'@'localhost' IDENTIFIED BY '12345678';
+--CREATE USER 'yusuf'@'localhost' IDENTIFIED BY '12345678';
 
-GRANT ALL PRIVILEGES ON *.* TO 'yusuf'@'localhost';
+--GRANT ALL PRIVILEGES ON *.* TO 'yusuf'@'localhost';
+
+CREATE USER 'yusuf'@'%' IDENTIFIED BY '12345678';
+
+GRANT ALL PRIVILEGES ON *.* TO 'yusuf'@'%';
 
 FLUSH PRIVILEGES;
 

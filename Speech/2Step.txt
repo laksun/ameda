@@ -1,3 +1,13 @@
 Registration module
 
   docker build -t register_image .
+  
+  
+  mvn clean install
+  
+  find / -name "original-Spring-Full-Security-1.0-SNAPSHOT.war"
+  
+  java -jar /home/ec2-user/SpringBoot-Registration-Login-ThePerfectExample/target/original-Spring-Full-Security-1.0-SNAPSHOT.war
+  
+  Sanity Check:
+  https://35.178.146.82:8443/
