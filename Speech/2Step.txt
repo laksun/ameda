@@ -1,0 +1,3 @@
+Registration module
+
+  docker build -t register_image .
