@@ -82,3 +82,9 @@ systemctl enable docker
 docker build -t register_image .
 docker tag af338aef527e yla-register/register:version1.0
 docker images
+
+=======================================================================================
+to make  a maven project eclipse project
+mvn eclipse:eclipse
+
+
