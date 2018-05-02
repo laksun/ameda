@@ -8,3 +8,4 @@ Speech/.idea/
 Speech/src/test/
 tripsmgmt/
 /bin/
+*/target/**
