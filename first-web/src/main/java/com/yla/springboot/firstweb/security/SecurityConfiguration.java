@@ -41,21 +41,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/login**").permitAll()
-		.antMatchers("/profile/**").fullyAuthenticated()
-		.antMatchers("*todo*/**").fullyAuthenticated()
-		.antMatchers("/").permitAll()
-		.and()
-		.formLogin()
-		.loginPage("/login")
-    	.failureUrl("/login?error")
-    	.permitAll()
-    	.and()
-    .logout()
-    	.invalidateHttpSession(true)
-    	.deleteCookies("JSESSIONID")
-    	.permitAll();
+//
+//		http.authorizeRequests()
+//		.antMatchers("/login**").permitAll()
+//		.antMatchers("/profile/**").fullyAuthenticated()
+//		.antMatchers("*todo*/**").fullyAuthenticated()
+//		.antMatchers("/").permitAll()
+//		.and()
+//		.formLogin()
+//		.loginPage("/login")
+//    	.failureUrl("/login?error")
+//    	.permitAll()
+//    	.and()
+//    .logout()
+//    	.invalidateHttpSession(true)
+//    	.deleteCookies("JSESSIONID")
+//    	.permitAll();
+
+		http.authorizeRequests().antMatchers("/login","/h2-console/**").permitAll()
+				.antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
+				.formLogin();
+		
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
+
 	}
 	
 	@Override
