@@ -4,7 +4,9 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +17,10 @@ import com.in28minutes.springboot.web.model.Flashcard;
 import com.in28minutes.springboot.web.model.Todo;
 import com.in28minutes.springboot.web.service.FlashcardRepository;
 
-@RestController
+@Controller
 public class FlashcardController {
+	
+	Logger logger = org.slf4j.LoggerFactory.getLogger(FlashcardController.class);
 
 	@Autowired
 	FlashcardRepository flashcardRepository;
@@ -25,7 +29,8 @@ public class FlashcardController {
 	public String showAddFlashcardPage(ModelMap model) {
 		model.addAttribute("flashcard", new Flashcard(0, "Default definition",
 				"Default Description","Default word", 0));
-		return "todo";
+		logger.info(" request GET /add-flashcard");
+		return "flashcard";
 	}
 
 	@RequestMapping(value = "/add-flashcard", method = RequestMethod.POST)

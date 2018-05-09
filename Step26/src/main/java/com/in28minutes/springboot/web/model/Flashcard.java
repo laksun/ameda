@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
 
 @Entity
 public class Flashcard {
@@ -16,6 +17,7 @@ public class Flashcard {
 	private String type;
 
 	// the definition order
+	@Digits(integer=3, fraction = 2, message="Please enter a digit between 1-999")
 	private int order;
 
 	@Id
