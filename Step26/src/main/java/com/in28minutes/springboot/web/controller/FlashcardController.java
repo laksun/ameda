@@ -41,7 +41,15 @@ public class FlashcardController {
 
 		flashcardRepository.save(flashcard);
 
-		return "flashcard";
+		return "redirect:/list-flashcards";
 
+	}
+	
+	@RequestMapping(value = "/list-flashcards", method = RequestMethod.GET)
+	public String showWords(ModelMap model) {
+		
+		
+		model.put("flashcards", flashcardRepository.findAll());
+		return "list-flashcards";
 	}
 }

@@ -24,6 +24,20 @@ public class Flashcard {
 	@Column(name="id",updatable=false,nullable=false)
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
+	
+	public Flashcard() {
+		super();
+	}
+
+	public Flashcard(int id, String word, String definition, String type, int order) {
+		super();
+		this.id = id;
+		this.word = word;
+		this.definition = definition;
+		this.type = type;
+		this.order = order;
+
+	}
 
 	@Override
 	public String toString() {
@@ -82,18 +96,6 @@ public class Flashcard {
 		this.order = order;
 	}
 
-	public Flashcard() {
-		super();
-	}
-
-	public Flashcard(int id, String word, String definition, String type, int order) {
-		super();
-		this.id = id;
-		this.word = word;
-		this.definition = definition;
-		this.type = type;
-		this.order = order;
-
-	}
+	
 
 }

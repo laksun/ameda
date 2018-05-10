@@ -48,14 +48,19 @@ public class TodoController {
 	}
 
 	private String getLoggedInUserName(ModelMap model) {
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		
-		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
+		try {
+			Object principal = SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+			
+			if (principal instanceof UserDetails) {
+				return ((UserDetails) principal).getUsername();
+			}
+			
+			return principal.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "testuser";
 		}
-		
-		return principal.toString();
 	}
 
 	@RequestMapping(value = "/add-todo", method = RequestMethod.GET)

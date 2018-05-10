@@ -17,14 +17,19 @@ public class WelcomeController {
 	}
 
 	private String getLoggedinUserName() {
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		
-		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
+		try {
+			Object principal = SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+			
+			if (principal instanceof UserDetails) {
+				return ((UserDetails) principal).getUsername();
+			}
+			
+			return principal.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "testuser";
 		}
-		
-		return principal.toString();
 	}
 
 }
