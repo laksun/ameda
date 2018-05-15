@@ -9,6 +9,11 @@ import javax.validation.constraints.Digits;
 
 @Entity
 public class Flashcard {
+	
+	@Id
+	@Column(name="id",updatable=false,nullable=false)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
 
 	private String word;
 
@@ -18,12 +23,9 @@ public class Flashcard {
 
 	// the definition order
 	@Digits(integer=3, fraction = 2, message="Please enter a digit between 1-999")
-	private int order;
+	private int wordorder;
 
-	@Id
-	@Column(name="id",updatable=false,nullable=false)
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int id;
+	
 	
 	public Flashcard() {
 		super();
@@ -35,14 +37,14 @@ public class Flashcard {
 		this.word = word;
 		this.definition = definition;
 		this.type = type;
-		this.order = order;
+		this.wordorder = order;
 
 	}
 
 	@Override
 	public String toString() {
 		
-		return String.format("word %s, definition %s, type %s, order %i, id %i", this.word, this.definition, this.type, this.order, this.id);
+		return String.format("word %s, definition %s, type %s, order %i, id %i", this.word, this.definition, this.type, this.wordorder, this.id);
 	}
 	
 	@Override
@@ -88,13 +90,15 @@ public class Flashcard {
 		this.type = type;
 	}
 
-	public int getOrder() {
-		return order;
+	public int getWordorder() {
+		return wordorder;
 	}
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setWordorder(int wordorder) {
+		this.wordorder = wordorder;
 	}
+
+	
 
 	
 
