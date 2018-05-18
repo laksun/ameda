@@ -1,13 +1,21 @@
 package com.in28minutes.springboot.web.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
+@ApiModel(description="All details about flashcard")
 public class Flashcard {
 	
 	@Id
@@ -15,18 +23,33 @@ public class Flashcard {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 
+	@Size(min=1)
+	@ApiModelProperty(notes="word should have atleast 1 character")
 	private String word;
 
+	@Size(min=1)
+	@ApiModelProperty(notes="definition should have at least 1 character")
 	private String definition;
 
+	@Size(min=1)
 	private String type;
 
 	// the definition order
 	@Digits(integer=3, fraction = 2, message="Please enter a digit between 1-999")
 	private int wordorder;
 
+	@JsonIgnore
+	private String password;
 	
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Flashcard() {
 		super();
 	}
