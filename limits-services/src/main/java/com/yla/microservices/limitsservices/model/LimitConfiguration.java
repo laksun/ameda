@@ -2,8 +2,14 @@ package com.yla.microservices.limitsservices.model;
 
 public class LimitConfiguration {
 	
-	int minimum;
-	int maximum;
+	public LimitConfiguration() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	private int minimum;
+	private int maximum;
 
 	
 	public void setMinimum(int minimum) {
