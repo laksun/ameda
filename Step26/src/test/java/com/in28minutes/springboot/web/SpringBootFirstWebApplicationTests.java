@@ -3,7 +3,6 @@ package com.in28minutes.springboot.web;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +38,7 @@ public class SpringBootFirstWebApplicationTests {
 		System.out.println(responseEntity.getBody());
 	}
 
-	@Test
+	//@Test
 	public void test2() {
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = "https://owlbot.info/api/v2/dictionary/{id}";
@@ -56,6 +55,11 @@ public class SpringBootFirstWebApplicationTests {
 		System.out.println("Name:" + wordEntity.getBody().getName());
 		System.out.println("Village:" + wordEntity.getBody().getDescription());
 	}
+	
+
+
+	
+	
 
 }
 

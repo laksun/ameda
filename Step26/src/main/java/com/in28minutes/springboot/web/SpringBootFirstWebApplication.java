@@ -15,7 +15,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 
 @SpringBootApplication
-@ComponentScan("com.in28minutes.springboot.web")
+@ComponentScan({"com.in28minutes.springboot.web","com.yla.external.journaldev"})
 public class SpringBootFirstWebApplication {
 
 	public static void main(String[] args) {
