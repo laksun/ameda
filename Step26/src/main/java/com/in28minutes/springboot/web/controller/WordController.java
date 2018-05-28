@@ -12,12 +12,15 @@ import com.in28minutes.springboot.web.model.Ylaword;
 import com.in28minutes.springboot.web.service.YlaWordRepository;
 
 @RestController
-public class YlaWordController {
+public class WordController {
 
-	Logger logger = LoggerFactory.getLogger(YlaWordController.class);
+	Logger logger = LoggerFactory.getLogger(WordController.class);
 
-	@Autowired
+	//@Autowired
+	
 	private YlaWordRepository ylaWordRepository;
+	
+	
 
 	@GetMapping("/ylaword/getword/{id}")
 	public Ylaword getYlaWord(@PathVariable int id) {
@@ -25,4 +28,6 @@ public class YlaWordController {
 		logger.info(ylaWord.toString());
 		return ylaWord;
 	}
+	
+	
 }

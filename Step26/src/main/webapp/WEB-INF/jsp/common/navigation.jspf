@@ -8,6 +8,7 @@
 			<li class="active"><a href="/">Home</a></li>
 			<li><a href="/list-todos">Todos</a></li>
 			<li><a href="/list-flashcards">Flashcards</a></li>
+			<li><a href="/word/get">Words</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="/logout">Logout</a></li>
