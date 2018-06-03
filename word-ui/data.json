@@ -1,0 +1,28 @@
+{ 
+"data": {
+  "words": {
+    "insatiable":{"id":1,
+    "word": "insatiable",
+    "definition":[
+      "impossible to satisfy",
+      "having an insatiable appetite or desire for something, especially sex"
+    ],
+    "partofspeech":"adjective",
+     "synonyms": "unquenchable, unappeasable, uncontrollable, voracious, prodigious, gluttonous, greedy, hungry, ravenous, ravening, wolfish, avid, eager, keen"
+   },
+   "voracious": {
+    "id":2,
+    "word": "voracious",
+    "definition":"wanting or devouring great quantities of food",
+    "partofspeech":"adjective",
+    "synonyms":"insatiable, unquenchable, unappeasable, prodigious, uncontrollable, uncontrolled, omnivorous, compulsive, gluttonous, greedy, rapacious"
+    },
+   "gluttonous":{
+    "id":3,
+    "word": "gluttonous",
+    "definition":"greedy, gourmandizing, voracious, insatiable, wolfish",
+    "partofspeech":"adjective"
+   }
+}
+}
+}
