@@ -1,0 +1,35 @@
+package com.yla.springboot.web.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.yla.springboot.web.model.Todo;
+import com.yla.springboot.web.service.TodoRepository;
+
+@RestController
+public class TodoResource {
+
+	@Autowired
+	private TodoRepository todoRepository;
+	
+	@GetMapping("/todo/alltodos")
+	public List<Todo>  retrieveAllTodos(){
+		return todoRepository.findAll();
+	}
+  
+	@GetMapping("/todo/onetodo/{id}")
+	public Todo getTodo(@PathVariable int id) {
+		return todoRepository.findOne(id);
+	}
+	
+	@PostMapping("/todo/addtodo")
+	public void createTodo(@RequestBody Todo todo) {
+		Todo savedTodo = todoRepository.save(todo);
+	}
+}
