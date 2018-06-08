@@ -1,4 +1,4 @@
-package com.in28minutes.springboot.web;
+package com.yla.springboot.web;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
