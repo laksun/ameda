@@ -15,13 +15,15 @@ public class UhrTest {
 		Uhr uhr = new Uhr();
 		Duration  seconds = uhr.getTopLamp().getSecond();
 		long secondsValue = seconds.getSeconds();
-		
-		uhr.tick();
-		
+		uhr.tick();		
 		assertEquals(secondsValue+1, uhr.getTopLamp().getSecond().getSeconds());
 		
 		
-		
-		
+	}
+	
+	//@Test
+	public void tickSecond59Test() {
+		//assertEquals(0, uhr.getTopLamp().getSecond().getSeconds());
 	}
 }
+
