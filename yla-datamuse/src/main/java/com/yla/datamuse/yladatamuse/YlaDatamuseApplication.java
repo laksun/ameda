@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.*;
 //insert mongo db
 //https://www.djamware.com/post/59b606e280aca768e4d2b13b/spring-boot-mvc-data-and-mongodb-crud-java-web-application
 
-@ComponentScan({"com.yla.datamuse.yladatamuse","com.yla.datamuse.yladatamuse.controllers"})
+@ComponentScan({"com.yla.datamuse.yladatamuse","com.yla.datamuse.yladatamuse.controllers","com.yla.jwi"})
 @Configuration
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
