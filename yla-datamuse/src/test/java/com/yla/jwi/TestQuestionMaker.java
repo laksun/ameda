@@ -24,5 +24,16 @@ public class TestQuestionMaker {
 		assertEquals(0, numberOfLines);
 		
 	}
+	
+	@Test
+	public void testWordMeaning() {
+		
+		String word= "";
+		QFileReader qFileReader = new QFileReader();
+		String meaning = qFileReader.getWordMeaning("");
+		assertEquals("", meaning);
+		
+		
+	}
 
 }
