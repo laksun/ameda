@@ -17,3 +17,6 @@ D:\Development\WSAmeda\data
 set 
 
 System.setProperty("WNHOME", "D:\\Development\\WSAmeda\\data");
+
+link:
+https://stackoverflow.com/questions/25339856/get-synonym-of-word-with-jwi
