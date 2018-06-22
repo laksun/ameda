@@ -17,7 +17,7 @@ public class TestQuestionMaker {
 	public void testReadListFile() {
 		String fileName = "D:\\Development\\WSAmeda\\data\\wordlist\\wordlist1.txt";
 		
-		QFileReader qFileReader = new QFileReader();
+		QuestionManager qFileReader = new QuestionManager();
 		int numberOfLines = qFileReader.readFile(fileName);
 		System.out.println(qFileReader.error);
 		
@@ -29,7 +29,7 @@ public class TestQuestionMaker {
 	public void testWordMeaning() {
 		
 		String word= "";
-		QFileReader qFileReader = new QFileReader();
+		QuestionManager qFileReader = new QuestionManager();
 		String meaning = qFileReader.getWordMeaning("");
 		assertEquals("", meaning);
 		

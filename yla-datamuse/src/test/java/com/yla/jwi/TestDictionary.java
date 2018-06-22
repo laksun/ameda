@@ -50,6 +50,8 @@ public class TestDictionary {
 		// look up first sense of the word "dog "
 		//IIndexWord idxWord = dict.getIndexWord("appease", POS.VERB);
 		 IIndexWord idxWord = dict.getIndexWord("dog", POS.NOUN);
+		 
+		 
 
 		IWordID wordID = idxWord.getWordIDs().get(0);
 		IWord word = dict.getWord(wordID);
