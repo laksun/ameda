@@ -75,6 +75,22 @@ public class QuestionManager {
 	
 	private List<Question> getWordsPos(String word) {
 		// TODO Auto-generated method stub
+		// for all the POS search
+		for (POS p : POS.values()) {
+			// get the word from the dictionary
+			IIndexWord idxWord = dict.getIndexWord(word,p);
+			if (idxWord != null) {
+				//fill the question
+				Question q = new Question();
+				q.setWord(word);
+				q.setPos(p.name());
+				//q.setSynonyms(idxWord.);
+				//add to the list
+			}
+		}
+		
+		
+		
 		return null;
 	}
 
