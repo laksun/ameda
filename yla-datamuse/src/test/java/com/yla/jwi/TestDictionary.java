@@ -26,7 +26,9 @@ public class TestDictionary {
 	@Test
 	public void testDictionary() {
 
-		System.setProperty("WNHOME", "D:\\Development\\WSAmeda\\data");
+		//System.setProperty("WNHOME", "D:\\Development\\WSAmeda\\data");
+		
+		System.setProperty("WNHOME", "C:\\Users\\admin\\Documents\\Workspace\\data");
 
 		String wnhome = System.getProperty("WNHOME");
 		String path = wnhome + File.separator + "dict";
